@@ -1,1 +1,1 @@
-# student_dashboard_frontend
+# NIC Frontend service

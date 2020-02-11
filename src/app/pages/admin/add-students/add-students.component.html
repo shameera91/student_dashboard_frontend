@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-12">
+     <nb-card size="">
+      <nb-card-header>
+        Add Students
+      </nb-card-header>
+      <nb-card-body>
+          <form (ngSubmit)="addStudents();form.reset()" #form="ngForm"  aria-labelledby="title">
+              <div class="form-control-group">
+                  <label class="label" for="input-studentId">Student Id:</label>
+                  <input nbInput
+                         [(ngModel)]="student.studentId"
+                         #studentId="ngModel"
+                         id="input-studentId"
+                         name="studentId"
+                         placeholder="Student id"
+                         autofocus
+                         pattern="[0-9]+"
+                         fullWidth
+                         [required]="true">
+                  <ng-container *ngIf="studentId.invalid && studentId.touched && !submitted">
+                    <p class="error-message" *ngIf="studentId.errors?.required">
+                        Student id is required!
+                    </p>
+                    <p class="error-message" *ngIf="studentId.errors?.pattern">
+                        Student id should be numeric!
+                    </p>
+                  </ng-container>
+                </div>
+
+                <div class="form-control-group">
+                  <label class="label" for="input-studentFirstName">Student first name:</label>
+                  <input nbInput
+                         [(ngModel)]="student.studentFirstName"
+                         #studentFirstName="ngModel"
+                         id="input-studentFirstName"
+                         name="studentFirstName"
+                         placeholder="Student first name"
+                         autofocus
+                         fullWidth
+                         [required]="true">
+                  <ng-container *ngIf="studentFirstName.invalid && studentFirstName.touched && !submitted">
+                    <p class="error-message" *ngIf="studentFirstName.errors?.required">
+                      First name is required!
+                    </p>
+                  </ng-container>
+                </div>
+
+                <div class="form-control-group">
+                  <label class="label" for="input-studentLastName">Student last name:</label>
+                  <input nbInput
+                         [(ngModel)]="student.studentLastName"
+                         #studentLastName="ngModel"
+                         id="input-studentLastName"
+                         name="studentLastName"
+                         placeholder="Student last name"
+                         autofocus
+                         fullWidth
+                         [required]="true">
+                  <ng-container *ngIf="studentLastName.invalid && studentLastName.touched && !submitted">
+                    <p class="error-message" *ngIf="studentLastName.errors?.required">
+                      Last name is required!
+                    </p>
+                  </ng-container>
+                </div>
+
+                <div class="form-control-group">
+                  <label class="label" for="input-studentYear">Student Year:</label>
+                  <input nbInput
+                         [(ngModel)]="student.studentYear"
+                         #studentYear="ngModel"
+                         id="input-studentYear"
+                         name="studentYear"
+                         placeholder="Student year"
+                         autofocus
+                         type="number"
+                         fullWidth
+                         [required]="true">
+                  <ng-container *ngIf="studentYear.invalid && studentYear.touched && !submitted">
+                    <p class="error-message" *ngIf="studentYear.errors?.required">
+                      Year is required!
+                    </p>
+                  </ng-container>
+                </div>
+
+
+
+              
+      
+                <div style="margin-top: 50px;" class="row">
+                  <div class="col-md-12">
+                      <button nbButton
+                      status="success"
+                      [disabled]="submitted || !form.valid"
+                      [class.btn-pulse]="submitted">
+                Add Student
+              </button>
+                  </div>
+                </div>
+
+          </form>
+        </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+        <nb-card-header>
+          Student List
+        </nb-card-header>
+      
+        <nb-card-body>
+          <ng2-smart-table  [source]="source" [settings]="Tablesettings"  >
+          </ng2-smart-table>
+        </nb-card-body>
+      </nb-card>
+      
+  </div>
+</div>

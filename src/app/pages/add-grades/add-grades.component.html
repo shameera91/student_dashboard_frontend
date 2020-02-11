@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-12">
+     <nb-card size="">
+      <nb-card-header>
+       Add Grades to Student Id: {{studentId}}
+      </nb-card-header>
+
+      <nb-card-body>
+
+        <form (ngSubmit)="addGrades();" #form="ngForm"  aria-labelledby="title">
+
+          <div class="form-control-group">
+            <label class="label" for="input-semester">Semester:</label>
+            <input nbInput
+                   [min]="0" [max]="4"
+                   [(ngModel)]="semester"
+                   (ngModelChange)="getStudentGradeBySemesterAndSubject(semester,studentId)"
+                   id="input-semester"
+                   name="semester"
+                   placeholder="Semester"
+                   autofocus
+                   type="number"
+                   fullWidth
+                   [required]="true">
+          </div>
+
+
+              <div *ngFor="let subject of SubjectAndData" class="form-control-group">
+                <label for="district" class="label">{{subject.subjectName}}</label>
+                <input nbInput
+                       [(ngModel)]="subject.result"
+                       id="input-grade"
+                       name="grade"
+                       placeholder="Grade"
+                       autofocus
+                       fullWidth
+                       [required]="true"
+                       disabled>
+                <!--<nb-select  [ngModelOptions]="{standalone: true}" [(ngModel)]="subject.result" fullWidth >
+                    <nb-option *ngFor="let grade of grades" value="{{grade}}">{{grade}}</nb-option>
+                </nb-select>-->
+              </div>
+
+
+              <div class="form-control-group">
+                  <label class="label" for="input-year">Year:</label>
+                  <input nbInput
+                         [(ngModel)]="year"
+                         id="input-year"
+                         name="year"
+                         placeholder="Year"
+                         autofocus
+                         fullWidth
+                         [required]="true"
+                         disabled
+                         >
+                </div>
+
+
+                <!--<div class="form-control-group">
+                    <label class="label" for="input-semester">Semester:</label>
+                    <input nbInput
+                    [min]="0" [max]="4"
+                           [(ngModel)]="semester"
+                           id="input-semester"
+                           name="semester"
+                           placeholder="Semester"
+                           autofocus
+                           type="number"
+                           fullWidth
+                           [required]="true">
+                  </div>-->
+
+              <div style="margin-top: 50px;" class="row">
+                  <div class="col-md-12">
+                      <button nbButton
+                      status="success"
+                      [class.btn-pulse]="submitted">
+                Add Student
+              </button>
+                  </div>
+                </div>
+        </form>
+
+
+
+
+      </nb-card-body>
+
+      </nb-card>
+
+  </div>
+</div>

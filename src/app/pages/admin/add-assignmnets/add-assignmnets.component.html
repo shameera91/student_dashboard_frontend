@@ -1,0 +1,110 @@
+<div class="row">
+  <div class="col-12">
+    <nb-card size="">
+      <nb-card-header>
+        Add Assignments
+      </nb-card-header>
+      <nb-card-body>
+        <form (ngSubmit)="addAssignment();form.reset()" #form="ngForm" aria-labelledby="title">
+          <div class="form-control-group">
+            <label class="label" for="input-assignmentCode">Assignment code:</label>
+            <input nbInput
+                   [(ngModel)]="assignment.assignmentCode"
+                   #assignmentCode="ngModel"
+                   id="input-assignmentCode"
+                   name="assignmentCode"
+                   placeholder="Assignment code"
+                   autofocus
+                   fullWidth
+                   [required]="true">
+            <ng-container *ngIf="assignmentCode.invalid && assignmentCode.touched && !submitted">
+              <p class="error-message" *ngIf="assignmentCode.errors?.required">
+                Assignment code is required!
+              </p>
+            </ng-container>
+          </div>
+
+          <div class="form-control-group">
+            <label class="label" for="input-assignmentName">Assignment name:</label>
+            <input nbInput
+                   [(ngModel)]="assignment.assignmentName"
+                   #assignmentName="ngModel"
+                   id="input-assignmentName"
+                   name="assignmentName"
+                   placeholder="Assignment name"
+                   autofocus
+                   fullWidth
+                   [required]="true">
+            <ng-container *ngIf="assignmentName.invalid && assignmentName.touched">
+              <p class="error-message" *ngIf="assignmentName.errors?.required">
+                Assignment name is required!
+              </p>
+            </ng-container>
+          </div>
+
+          <div class="form-control-group">
+            <label class="label" for="input-semester">Semester:</label>
+            <input nbInput
+                   [min]="0" [max]="4"
+                   [(ngModel)]="assignment.semester"
+                   #semester="ngModel"
+                   id="input-semester"
+                   name="semester"
+                   placeholder="Semester"
+                   autofocus
+                   fullWidth
+                   type="number"
+                   [required]="true">
+            <ng-container *ngIf="semester.invalid && semester.touched">
+              <p class="error-message" *ngIf="semester.errors?.required">
+                Semester is required!
+              </p>
+            </ng-container>
+          </div>
+
+
+          <div class="form-control-group">
+            <label class="label" for="input-semester">Subject:</label>
+
+            <nb-select [ngModelOptions]="{standalone: true}" [(ngModel)]=assignment.subjectId fullWidth>
+              <nb-option *ngFor="let subject of subjectAndData"
+                         value="{{subject.id}}">{{subject.subjectName}}</nb-option>
+            </nb-select>
+
+            <!-- <div *ngFor="let subject of SubjectAndData" class="form-control-group">
+               <label class="label">{{subject.subjectTitle}}</label>
+               <nb-select  [ngModelOptions]="{standalone: true}" [(ngModel)]="subject.result" fullWidth >
+                 <nb-option *ngFor="let grade of grades" value="{{grade}}">{{grade}}</nb-option>
+               </nb-select>
+             </div>-->
+          </div>
+
+
+          <div style="margin-top: 50px;" class="row">
+            <div class="col-md-12">
+              <button nbButton
+                      status="success"
+                      [disabled]="submitted || !form.valid"
+                      [class.btn-pulse]="submitted">
+                Add Assignment
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header>
+        Assignment List
+      </nb-card-header>
+
+      <nb-card-body>
+        <ng2-smart-table [source]="source" [settings]="Tablesettings">
+        </ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
+
+  </div>
+</div>

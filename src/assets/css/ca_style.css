@@ -1,0 +1,44 @@
+nb-checkbox {
+    margin-bottom: 1rem;
+  }
+  
+
+  
+  .form-inline > * {
+    margin: 0 1.5rem 1.5rem 0;
+  }
+  
+  nb-card.inline-form-card nb-card-body {
+    padding-bottom: 0;
+  }
+  
+  .form-group{
+      width: 100%;
+  }
+
+.error-message{
+  color: red!important;
+}
+
+  .alignRight{
+    float: right
+  }
+
+  .left-margin{
+    margin-left: 10px;
+  }
+.form-control-group{
+  margin-bottom: 20px;
+}
+
+.nb-theme-default ng2-smart-table .ng2-smart-actions{
+  height: auto!important;
+}
+
+
+.check_class{
+  font-size: 20px;
+    color: black;
+    font-weight: bold!important;
+}
+
